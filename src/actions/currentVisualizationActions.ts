@@ -6,10 +6,10 @@ import { IVisualization } from "../models/Visualization";
 
 
 export interface ICurrentVisualizationAction extends Action {
-    visualization: IVisualization;
+    visualization: IVisualization["id"];
 }
 
-export function setCurrentVisualization(visualization: IVisualization): ICurrentVisualizationAction {
+export function setCurrentVisualization(visualization: IVisualization["id"]): ICurrentVisualizationAction {
     return {
         type: SET_CURRENT_VISUALIZATION,
         visualization

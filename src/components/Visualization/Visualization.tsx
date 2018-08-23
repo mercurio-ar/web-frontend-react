@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { IStoreState } from '../../reducers/rootReducer';
-import { currentVisualizationName } from '../../selectors/currentVisualizationSelectors';
+import { getCurrentVisualizationName } from '../../selectors/currentVisualizationSelectors';
 
 import VisualizationAdd from './VisualizationAdd';
 import VisualizationChart from './VisualizationChart';
@@ -12,7 +12,7 @@ import VisualizationTakeSnapshot from './VisualizationTakeSnapshot';
 
 
 interface IVisualizationProps extends React.Props<any> {
-    name: string | null
+    name?: string;
 }
 
 class Visualization extends React.Component<IVisualizationProps> {
@@ -40,7 +40,7 @@ class Visualization extends React.Component<IVisualizationProps> {
 
 function mapStateToProps(state: IStoreState){
     return {
-        name: currentVisualizationName(state),
+        name: getCurrentVisualizationName(state),
     }
 }
 
