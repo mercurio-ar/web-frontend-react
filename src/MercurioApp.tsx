@@ -4,7 +4,7 @@ import './MercurioApp.css'
 
 import NavBar from './components/NavBar';
 import SideNav from './components/SideNav';
-import Visualization from './components/Visualization';
+import Visualization from './components/Visualization/Visualization';
 
 import Container from './components/style/Container';
 import MainBody from './components/style/MainBody';
