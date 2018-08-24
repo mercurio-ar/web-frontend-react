@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+import VisualizationTab from './VisualizationTab';
+
 import { IVisualization } from '../../models/Visualization';
 import { IStoreState } from '../../reducers/rootReducer';
 import { getCurrentVisualization } from '../../selectors/currentVisualizationSelectors';
@@ -27,10 +29,9 @@ export function MyVisualizations(props: IMyVisualizationsProps) {
                 {
                     props.visualizations.map(visualization => (
                         <SideBarGroupItem key={visualization.id} >
-                            <a className={`nav-link ${props.currentVisualization === visualization ? 'active' : ''}`} href="#">
-                                <span className="float-right"><i className="far fa-times-circle" /></span>
-                                {visualization.name}
-    </a>
+                            <VisualizationTab active={props.currentVisualization === visualization}
+                                visualization={visualization}
+                            />
                         </SideBarGroupItem>
                     ))
                 }
