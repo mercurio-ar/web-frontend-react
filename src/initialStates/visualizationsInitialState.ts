@@ -1,5 +1,9 @@
-import { IVisualization } from "../models/Visualization";
+import { IVisualizationsState } from "../reducers/visualizationReducer";
 
-const visualizationInitialState: IVisualization[] = [];
+
+const visualizationInitialState: IVisualizationsState = {
+    fetching: false,
+    visualizations: [],
+};
 
 export default visualizationInitialState;
