@@ -3,7 +3,7 @@ import * as React from 'react';
 import './MercurioApp.css'
 
 import NavBar from './components/NavBar';
-import SideNav from './components/SideNav';
+import SideNav from './components/SideNav/SideNav';
 import Visualization from './components/Visualization/Visualization';
 
 import Container from './components/style/Container';
