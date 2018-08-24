@@ -11,12 +11,12 @@ export function currentVisualization(state: IStoreState): number | null {
     return state.currentVisualization;
 }
 
-const getCurrentVisualization = createSelector(
-    [ getVisualizations, currentVisualization ],
+export const getCurrentVisualization = createSelector(
+    [getVisualizations, currentVisualization],
     (visualizations: IVisualization[], cv: number) => visualizations.find(
-      (visualization: IVisualization) => visualization.id === cv
+        (visualization: IVisualization) => visualization.id === cv
     )
-  )
+)
 
 export function getCurrentVisualizationName(state: IStoreState): string | undefined {
     const current = getCurrentVisualization(state);
