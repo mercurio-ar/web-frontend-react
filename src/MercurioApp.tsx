@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import './MercurioApp.css'
 
+import VisualizationsController from './controllers/VisualizationsController';
+
 import NavBar from './components/NavBar';
 import SideNav from './components/SideNav/SideNav';
 import Visualization from './components/Visualization/Visualization';
@@ -15,6 +17,7 @@ class MercurioApp extends React.Component {
     public render() {
         return (
             <div>
+                <VisualizationsController />
                 <NavBar/>
 
                 <Container fluid={true}>
