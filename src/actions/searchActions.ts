@@ -1,12 +1,17 @@
 import { Action, Dispatch } from "redux";
 
 import { ISearchResult } from "../apis";
-import { SET_SEARCH_ERROR, SET_SEARCH_RESULTS, SET_SEARCHING } from "../constants";
+import {
+    SET_SEARCH_ERROR,
+    SET_SEARCH_RESULTS,
+    SET_SEARCH_TERM, SET_SEARCHING
+} from "../constants";
 import { IStoreState } from "../reducers";
 import { getMercurioApi, getSearchQuery } from "../selectors";
 
 export type ISearchAction = ISearchingAction &
     ISearchResultAction &
+    ISearchTermAction &
     ISearchErrorAction;
 
 export interface ISearchingAction extends Action {
@@ -19,6 +24,17 @@ export interface ISearchResultAction extends Action {
 
 export interface ISearchErrorAction extends Action {
     error: string;
+}
+
+export interface ISearchTermAction extends Action {
+    searchTerm: string;
+}
+
+export function setSearchTerm(searchTerm: string): ISearchTermAction {
+    return {
+        searchTerm,
+        type: SET_SEARCH_TERM,
+    }
 }
 
 export function setSearching(searching: boolean): ISearchingAction {

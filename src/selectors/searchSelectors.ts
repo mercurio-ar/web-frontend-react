@@ -10,3 +10,7 @@ export function getSearchState(state: IStoreState){
 export const getSearchQuery = createSelector(getSearchState, 
     (state: ISearchState) => (state.query)
 );
+
+export const getSearchTerm = createSelector(getSearchQuery,
+    searchQuery => searchQuery.searchTerm
+);
