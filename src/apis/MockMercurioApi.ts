@@ -22,7 +22,10 @@ export default class MockMercurioApi implements IMercurioApi {
 
     public search(searchQuery: ISearchQuery){
         return Promise.resolve([
-            {id: 1, displayName: "searchResult01"}
+            {id: 1, displayName: "searchResult01"},
+            {id: 2, displayName: "searchResult02"},
+            {id: 3, displayName: "searchResult03"},
+            {id: 4, displayName: "searchResult04"},
         ]);
     }
 }
