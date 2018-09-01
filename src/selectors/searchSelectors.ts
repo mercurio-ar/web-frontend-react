@@ -14,3 +14,7 @@ export const getSearchQuery = createSelector(getSearchState,
 export const getSearchTerm = createSelector(getSearchQuery,
     searchQuery => searchQuery.searchTerm
 );
+
+export const getSearchResults = createSelector(getSearchState,
+    state => state.results
+);
