@@ -5,12 +5,10 @@ import './MercurioApp.css'
 import VisualizationsController from './controllers/VisualizationsController';
 
 import NavBar from './components/NavBar';
-import SideNav from './components/SideNav/SideNav';
-import Visualization from './components/Visualization/Visualization';
+import SideNav from './components/SideNav';
+import Visualization from './components/Visualization';
 
-import Container from './components/style/Container';
-import MainBody from './components/style/MainBody';
-import Row from './components/style/Row';
+import {Container, MainBody, Row} from './components/style';
 
 class MercurioApp extends React.Component {
 
