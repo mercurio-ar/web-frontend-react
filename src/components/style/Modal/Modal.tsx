@@ -1,18 +1,20 @@
 import * as React from 'react';
 
+import { Modal as UiModal } from '@material-ui/core';
+
 interface IModalProps extends React.Props<any> {
-    isOpen: boolean;
+    open: boolean;
     onClose: () => void;
 }
 
 export function Modal(props: IModalProps) {
     return (
-        <div className="modal" role="dialog">
+        <UiModal {...props}>
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     {props.children}
                 </div>
             </div>
-        </div>
+        </UiModal>
     );
 }

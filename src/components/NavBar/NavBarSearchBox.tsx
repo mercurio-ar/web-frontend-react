@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { Modal, TextInput } from '../style';
+import { SerieNameSearch, SerieSearchForm, SerieSearchResults } from '../SerieSearch';
+import { Modal, ModalBody, ModalHeader, TextInput } from '../style';
 
 interface INavBarSearchBoxProps extends React.Props<any> {
 
@@ -17,25 +18,42 @@ export default class NavBarSearchBox extends React.Component<INavBarSearchBoxPro
         this.state = {
             isModalOpen: false,
         };
+
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
-    public closeModal(){
-        this.setState({isModalOpen: false});
+    public openModal() {
+        this.setState({ isModalOpen: true });
+    }
+
+    public closeModal() {
+        this.setState({ isModalOpen: false });
     }
 
     public render() {
         return (
-            <div>
-                <TextInput placeholder="Search" aria-label="Search" />
-                <Modal open={this.state.isModalOpen}>
-                    <ModalTitle onClose={this.closeModal}>
+            <div className="w-100">
+                <TextInput
+                    placeholder="Search"
+                    aria-label="Search"
+                    className="form-control form-control-dark w-100"
+                    onClick={this.openModal}
+                    style={{
+                        background: 'rgba(255, 255, 255, .1)',
+                        border: 'rgba(255, 255, 255, .1)',
+                        color: '#fff',
+                    }}
+                />
+                <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
+                    <ModalHeader>
                         <SerieSearchForm>
-                            <SerieNameSearh />
+                            <SerieNameSearch />
                         </SerieSearchForm>
-                    </ModalTitle>
-                    <ModalContent>
+                    </ModalHeader>
+                    <ModalBody>
                         <SerieSearchResults />
-                    </ModalContent>
+                    </ModalBody>
                 </Modal>
             </div>
         );
