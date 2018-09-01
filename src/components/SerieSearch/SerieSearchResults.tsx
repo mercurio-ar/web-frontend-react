@@ -8,19 +8,36 @@ import { getSearchResults } from '../../selectors';
 
 interface ISerieSearchResultsProps extends React.Props<any> {
     searchResults: ISearchResult[];
+    renderResult?: (result: ISearchResult) => JSX.Element;
+    renderResultWrapper?: (renderedResult: JSX.Element, key: string | number) => JSX.Element;
 }
 
 export function UnConnectedSerieSearchResults(props: ISerieSearchResultsProps) {
+    const wrapperRenderer = props.renderResultWrapper ? props.renderResultWrapper : renderResultWrapper
+    const resultRenderer = props.renderResult ? props.renderResult : renderResult;
+
     return (
-        <div id="list-example" className="list-group">
+        <div className="list-group">
             {
-                props.searchResults.map((searchResult: ISearchResult) => (
-                    <a key={searchResult.id} className="list-group-item list-group-item-action">
-                        {searchResult.id}: {searchResult.displayName}
-                    </a>
-                ))
+                props.searchResults.map((searchResult: ISearchResult, index) =>
+                    (wrapperRenderer(resultRenderer(searchResult), index))
+                )
             }
         </div>
+    );
+}
+
+function renderResultWrapper(renderedResult: JSX.Element, key: string | number) {
+    return (
+        <div key={key} className="list-group-item list-group-item-action" >
+            {renderedResult}
+        </div>
+    );
+}
+
+function renderResult(result: ISearchResult): JSX.Element {
+    return (
+        <a>{result.id}: {result.displayName}</a>
     );
 }
 
