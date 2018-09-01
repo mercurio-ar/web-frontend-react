@@ -1,10 +1,7 @@
-import IMercurioApi from "../apis/IMercurioApi";
-
-import { IApisAction } from "../actions/apisActions";
-
-import { SET_APIS } from "../constants/apisContstants";
-
-import apisInitialState from "../initialStates/apisInitialState";
+import { IApisAction } from "../actions";
+import { IMercurioApi } from "../apis";
+import { SET_APIS } from "../constants";
+import { apisInitialState } from "../initialStates";
 
 
 export interface IApisState {
@@ -13,7 +10,7 @@ export interface IApisState {
 
 export default function apisReducer(state = apisInitialState, action: IApisAction) {
     switch (action.type) {
-        case SET_APIS: return {...state, ...action.apis };
+        case SET_APIS: return { ...state, ...action.apis };
         default: return state;
     }
 }
