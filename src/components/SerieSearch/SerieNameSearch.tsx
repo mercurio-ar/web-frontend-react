@@ -2,6 +2,6 @@ import * as React from 'react'
 
 export function SerieNameSearch(props: React.Props<any>) {
     return (
-        <div {...props}>{props.children} SerieNameSearch</div>
+        <input type="text" className="form-control" id="searchName" placeholder="Search..." />
     );
 }
