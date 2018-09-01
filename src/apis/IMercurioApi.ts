@@ -1,6 +1,13 @@
-import { IVisualization } from "../models/Visualization";
+import { ISearchQuery } from "../apis";
+import { IVisualization } from "../models";
 
 
-export default interface IMercurioApi {
+export interface ISearchResult {
+    id: string | number;
+    displayName: string;
+}
+
+export interface IMercurioApi {
     fetchVisualizations: () => Promise<IVisualization[]>
+    search: (searchQuery: ISearchQuery) => Promise<ISearchResult[]>
 }
