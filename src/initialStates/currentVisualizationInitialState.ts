@@ -1,3 +1,3 @@
-const currentVisualizationInitialState = null;
+export const currentVisualizationInitialState = null;
 
 export default currentVisualizationInitialState;

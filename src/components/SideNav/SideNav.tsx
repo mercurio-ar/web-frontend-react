@@ -5,7 +5,7 @@ import RecentVisualizations from './RecentVisualizations';
 import SharedVisualizations from './SharedVisualizations';
 import SocialMenu from './SocialMenu';
 
-import SideBar from '../style/SideBar';
+import { SideBar } from '../style';
 
 
 class SideNav extends React.Component {

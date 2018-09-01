@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import SideBarGroup from '../style/SideBarGroup';
-import SideBarGroupItem from '../style/SideBarGroupItem';
+import {SideBarGroup, SideBarGroupItem} from '../style';
 
 
 export default function SocialMenu(props: React.Props<any>) {

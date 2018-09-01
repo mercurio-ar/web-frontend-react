@@ -1,4 +1,4 @@
-import IMercurioApi from "./IMercurioApi";
+import { IMercurioApi, ISearchQuery } from "./";
 
 import { ISerie } from "../models/Serie";
 
@@ -17,6 +17,15 @@ export default class MockMercurioApi implements IMercurioApi {
             {id: 1, name: "Visualization01", series},
             {id: 2, name: "Visualization02", series: [series[0], series[1]]},
             {id: 3, name: "Visualization03", series: [series[0]]},
+        ]);
+    }
+
+    public search(searchQuery: ISearchQuery){
+        return Promise.resolve([
+            {id: 1, displayName: "searchResult01"},
+            {id: 2, displayName: "searchResult02"},
+            {id: 3, displayName: "searchResult03"},
+            {id: 4, displayName: "searchResult04"},
         ]);
     }
 }

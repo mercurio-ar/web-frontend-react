@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-interface IContainerProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface IContainerProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     fluid?: boolean;
 }
 
-function Container(props: IContainerProps) {
+export function Container(props: IContainerProps) {
     const klass = `container${props.fluid ? '-fluid' : ''}`
     const divProps = Object.assign({}, props)
     delete divProps.fluid
@@ -12,5 +12,3 @@ function Container(props: IContainerProps) {
         <div className={klass} {...divProps} />
     );
 }
-
-export default Container;

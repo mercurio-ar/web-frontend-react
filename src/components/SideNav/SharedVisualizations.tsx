@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-import SideBarGroup from '../style/SideBarGroup';
-import SideBarGroupItem from '../style/SideBarGroupItem';
-import SideBarHeading from '../style/SideBarHeading';
+import {SideBarGroup, SideBarGroupItem, SideBarHeading} from '../style';
 
 
 export default function SharedVisualizations(props: React.Props<any>) {

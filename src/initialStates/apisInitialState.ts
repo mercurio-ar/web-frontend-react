@@ -1,8 +1,8 @@
-import NullMercurioApi from "../apis/NullMercurioApi";
+import MockMercurioApi from "../apis/MockMercurioApi";
 
 
-const apisInitialState = {
-    mercurioApi: new NullMercurioApi(),
+export const apisInitialState = {
+    mercurioApi: new MockMercurioApi(),
 }
 
 export default apisInitialState

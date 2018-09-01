@@ -8,9 +8,7 @@ import { IStoreState } from '../../reducers/rootReducer';
 import { getCurrentVisualization } from '../../selectors/currentVisualizationSelectors';
 import { getVisualizations } from '../../selectors/visualizationSelectors';
 
-import SideBarGroup from '../style/SideBarGroup';
-import SideBarGroupItem from '../style/SideBarGroupItem';
-import SideBarHeading from '../style/SideBarHeading';
+import { SideBarGroup, SideBarGroupItem, SideBarHeading } from '../style';
 
 
 interface IMyVisualizationsProps extends React.Props<any> {
