@@ -37,11 +37,11 @@ export function fetchVisualizations() {
         dispatch(setFetchingVisualizations(true));
         getMercurioApi(getState())
         .fetchVisualizations()
-        .then(visualizations => {
+        .then((visualizations: IVisualization[]) => {
             dispatch(setVisualizations(visualizations));
             dispatch(setFetchingVisualizations(false));
         })
-        .catch(err => {
+        .catch((err: string) => {
             dispatch(setVisualizationsError(err));
             dispatch(setFetchingVisualizations(false));
         })
