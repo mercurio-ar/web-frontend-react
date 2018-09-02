@@ -6,7 +6,7 @@ import { IStoreState } from "../reducers/rootReducer";
 import { ISerie } from '../models/Serie';
 import { IVisualization } from "../models/Visualization";
 
-import { getVisualizations } from "./visualizationSelectors";
+import { getMyVisualizations } from "./visualizationSelectors";
 
 
 export function currentVisualization(state: IStoreState): number | null {
@@ -14,7 +14,7 @@ export function currentVisualization(state: IStoreState): number | null {
 }
 
 export const getCurrentVisualization = createSelector(
-    [getVisualizations, currentVisualization],
+    [getMyVisualizations, currentVisualization],
     (visualizations: IVisualization[], cv: number) => visualizations.find(
         (visualization: IVisualization) => visualization.id === cv
     )

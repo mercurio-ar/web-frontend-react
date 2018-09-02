@@ -1,14 +1,13 @@
 import { createSelector } from "reselect";
 
-import { IStoreState } from "../reducers/rootReducer";
+import { IStoreState, IVisualizationsState } from "../reducers";
 
-import { IVisualizationsState } from "../reducers/visualizationReducer";
 
-export function getVisualizationState(state: IStoreState): IVisualizationsState{
+export function getVisualizationsState(state: IStoreState): IVisualizationsState{
     return state.visualizations;
 }
 
-export const getVisualizations = createSelector(
-    getVisualizationState,
+export const getMyVisualizations = createSelector(
+    getVisualizationsState,
     (visualizationState: IVisualizationsState) => visualizationState.visualizations
 );
