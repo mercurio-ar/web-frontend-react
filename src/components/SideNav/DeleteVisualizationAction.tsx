@@ -1,15 +1,20 @@
 import * as React from 'react';
+import { LocalizeContextProps, withLocalize } from 'react-localize-redux';
 import { connect } from 'react-redux';
+
+import { DeleteVisualizationActionTranslations } from '../../translations';
 
 import { deleteVisualization } from '../../actions';
 import { IVisualization } from "../../models";
 import { Button, Modal, ModalFooter, ModalHeader } from '../style';
 
 
-interface IDeleteVisulalizationActionProps extends React.Props<any> {
+interface IUnLocalizeDeleteVisulalizationActionProps extends React.Props<any> {
     visualization: IVisualization;
     deleteVisualization: (visualization: IVisualization) => void;
 }
+
+type IDeleteVisulalizationActionProps = LocalizeContextProps & IUnLocalizeDeleteVisulalizationActionProps;
 
 interface IDeleteVisulalizationActionState {
     isModalOpen: boolean;
@@ -27,6 +32,8 @@ export class UnConnectedDeleteVisualizationAction extends React.Component<IDelet
         this.delete = this.delete.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.closeModal = this.closeModal.bind(this);
+
+        this.props.addTranslation(DeleteVisualizationActionTranslations);
     }
 
     public handleClick(event: any) {
@@ -65,6 +72,8 @@ export class UnConnectedDeleteVisualizationAction extends React.Component<IDelet
     }
 }
 
-export const DeleteVisualizationAction = connect(null, { deleteVisualization })(UnConnectedDeleteVisualizationAction);
+export const UnLocalizeDeleteVisualizationAction = connect(null, { deleteVisualization })(UnConnectedDeleteVisualizationAction);
+
+export const DeleteVisualizationAction = withLocalize(UnLocalizeDeleteVisualizationAction);
 
 export default DeleteVisualizationAction;
