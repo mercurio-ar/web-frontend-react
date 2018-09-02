@@ -3,7 +3,9 @@ import { IVisualizationsState } from "../reducers/visualizationReducer";
 
 export const visualizationInitialState: IVisualizationsState = {
     fetching: false,
-    visualizations: [],
+    visualizations: {
+        user: [],
+    },
 };
 
 export default visualizationInitialState;

@@ -3,7 +3,7 @@ import { Action, Dispatch } from "redux";
 import {
     REMOVE_VISUALIZATIONS,
     SET_FETCHING_VISUALIZATION,
-    SET_VISUALIZATIONS,
+    SET_USER_VISUALIZATIONS,
     SET_VISUALIZATIONS_ERROR
 } from "../constants";
 import { IVisualization } from "../models";
@@ -29,7 +29,7 @@ export interface IVisualizationsManipulationAction extends Action {
 
 export function setVisualizations(visualizations: IVisualization[]): IVisualizationsManipulationAction {
     return {
-        type: SET_VISUALIZATIONS,
+        type: SET_USER_VISUALIZATIONS,
         visualizations
     };
 }
