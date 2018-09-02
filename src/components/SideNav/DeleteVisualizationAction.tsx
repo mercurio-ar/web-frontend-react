@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { LocalizeContextProps, withLocalize } from 'react-localize-redux';
+import { LocalizeContextProps, Translate, withLocalize } from 'react-localize-redux';
 import { connect } from 'react-redux';
 
 import { DeleteVisualizationActionTranslations } from '../../translations';
@@ -60,11 +60,15 @@ export class UnConnectedDeleteVisualizationAction extends React.Component<IDelet
                 <i className="far fa-times-circle" onClick={this.handleClick} />
                 <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
                     <ModalHeader>
-                        Are you sure?
+                        <Translate id="delete.visualization.confirmation" />
                     </ModalHeader>
                     <ModalFooter>
-                        <Button variant="danger" onClick={this.delete}>Delete</Button>
-                        <Button variant="secondary" onClick={this.closeModal}>Cancel</Button>
+                        <Button variant="danger" onClick={this.delete}>
+                            <Translate id="delete.visualization.confirm" />
+                        </Button>
+                        <Button variant="secondary" onClick={this.closeModal}>
+                            <Translate id="delete.visualization.cancel" />
+                        </Button>
                     </ModalFooter>
                 </Modal>
             </div>
