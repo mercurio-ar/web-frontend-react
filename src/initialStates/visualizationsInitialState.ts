@@ -1,7 +1,7 @@
 import { IVisualizationsState } from "../reducers/visualizationReducer";
 
 
-const visualizationInitialState: IVisualizationsState = {
+export const visualizationInitialState: IVisualizationsState = {
     fetching: false,
     visualizations: [],
 };
