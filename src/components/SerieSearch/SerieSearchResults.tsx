@@ -9,7 +9,7 @@ import { getSearchResults } from '../../selectors';
 interface ISerieSearchResultsProps extends React.Props<any> {
     searchResults: ISearchResult[];
     renderResult?: (result: ISearchResult) => JSX.Element;
-    renderResultWrapper?: (renderedResult: JSX.Element, key: string | number) => JSX.Element;
+    renderResultWrapper?: (renderedResult: JSX.Element, key: string | number, result: ISearchResult) => JSX.Element;
 }
 
 export function UnConnectedSerieSearchResults(props: ISerieSearchResultsProps) {
@@ -20,7 +20,7 @@ export function UnConnectedSerieSearchResults(props: ISerieSearchResultsProps) {
         <div className="list-group">
             {
                 props.searchResults.map((searchResult: ISearchResult, index) =>
-                    (wrapperRenderer(resultRenderer(searchResult), index))
+                    (wrapperRenderer(resultRenderer(searchResult), index, searchResult))
                 )
             }
         </div>

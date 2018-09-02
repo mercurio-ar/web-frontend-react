@@ -6,8 +6,11 @@ import {
     SET_SEARCH_RESULTS,
     SET_SEARCH_TERM, SET_SEARCHING
 } from "../constants";
+import { IVisualization } from "../models";
 import { IStoreState } from "../reducers";
 import { getMercurioApi, getSearchQuery } from "../selectors";
+import { addUserVisualizations, setCurrentVisualization } from './';
+
 
 export type ISearchAction = ISearchingAction &
     ISearchResultAction &
@@ -72,4 +75,18 @@ export function search() {
                 dispatch(setSearching(false));
             })
     };
+}
+
+export function newVisualizationFromSearchResult(searchResult: ISearchResult) {
+    return (dispatch: Dispatch, getState: () => IStoreState) => {
+        getMercurioApi(getState())
+            .createVisualizationFromSearchResult(searchResult)
+            .then((visualization: IVisualization) => {
+                dispatch(addUserVisualizations([visualization]));
+                dispatch(setCurrentVisualization(visualization.id));
+            })
+            .catch((err: string) => {
+                dispatch(setSearchError(err))
+            });
+    }
 }

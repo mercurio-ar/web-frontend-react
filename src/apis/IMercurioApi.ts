@@ -3,11 +3,12 @@ import { IVisualization } from "../models";
 
 
 export interface ISearchResult {
-    id: string | number;
+    id: number;
     displayName: string;
 }
 
 export interface IMercurioApi {
+    createVisualizationFromSearchResult: (searchResult: ISearchResult) => Promise<IVisualization>;
     deleteVisualization: (visualization: IVisualization) => Promise<void>;
     fetchVisualizations: () => Promise<IVisualization[]>
     search: (searchQuery: ISearchQuery) => Promise<ISearchResult[]>

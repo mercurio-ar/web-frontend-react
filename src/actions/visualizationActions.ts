@@ -1,9 +1,10 @@
 import { Action, Dispatch } from "redux";
 
 import {
+    ADD_USER_VISUALIZATIONS,
     REMOVE_VISUALIZATIONS,
     SET_FETCHING_VISUALIZATION,
-    SET_VISUALIZATIONS,
+    SET_USER_VISUALIZATIONS,
     SET_VISUALIZATIONS_ERROR
 } from "../constants";
 import { IVisualization } from "../models";
@@ -27,9 +28,16 @@ export interface IVisualizationsManipulationAction extends Action {
     visualizations: IVisualization[];
 }
 
-export function setVisualizations(visualizations: IVisualization[]): IVisualizationsManipulationAction {
+export function addUserVisualizations(visualizations: IVisualization[]): IVisualizationsManipulationAction {
     return {
-        type: SET_VISUALIZATIONS,
+        type: ADD_USER_VISUALIZATIONS,
+        visualizations,
+    }
+}
+
+export function setUserVisualizations(visualizations: IVisualization[]): IVisualizationsManipulationAction {
+    return {
+        type: SET_USER_VISUALIZATIONS,
         visualizations
     };
 }
@@ -61,7 +69,7 @@ export function fetchVisualizations() {
         getMercurioApi(getState())
             .fetchVisualizations()
             .then((visualizations: IVisualization[]) => {
-                dispatch(setVisualizations(visualizations));
+                dispatch(setUserVisualizations(visualizations));
                 dispatch(setFetchingVisualizations(false));
             })
             .catch((err: string) => {

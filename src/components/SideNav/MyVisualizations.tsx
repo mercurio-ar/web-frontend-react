@@ -6,7 +6,7 @@ import VisualizationTab from './VisualizationTab';
 import { IVisualization } from '../../models/Visualization';
 import { IStoreState } from '../../reducers/rootReducer';
 import { getCurrentVisualization } from '../../selectors/currentVisualizationSelectors';
-import { getVisualizations } from '../../selectors/visualizationSelectors';
+import { getMyVisualizations } from '../../selectors/visualizationSelectors';
 
 import { SideBarGroup, SideBarGroupItem, SideBarHeading } from '../style';
 
@@ -41,7 +41,7 @@ export function MyVisualizations(props: IMyVisualizationsProps) {
 function mapStateToProps(state: IStoreState) {
     return {
         currentVisualization: getCurrentVisualization(state),
-        visualizations: getVisualizations(state),
+        visualizations: getMyVisualizations(state),
     }
 }
 
