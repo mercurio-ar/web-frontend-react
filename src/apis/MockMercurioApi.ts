@@ -1,6 +1,6 @@
 import { IMercurioApi, ISearchQuery } from "./";
 
-import { ISerie } from "../models/Serie";
+import { ISerie, IVisualization } from "../models";
 
 
 const series: ISerie[] = [
@@ -18,6 +18,10 @@ export default class MockMercurioApi implements IMercurioApi {
             {id: 2, name: "Visualization02", series: [series[0], series[1]]},
             {id: 3, name: "Visualization03", series: [series[0]]},
         ]);
+    }
+
+    public deleteVisualization(visualization: IVisualization){
+        return Promise.resolve();
     }
 
     public search(searchQuery: ISearchQuery){
