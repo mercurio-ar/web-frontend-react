@@ -9,7 +9,6 @@ import VisualizationsController from './controllers/VisualizationsController';
 import NavBar from './components/NavBar';
 import SideNav from './components/SideNav';
 import Visualization from './components/Visualization';
-import { GlobalTranslations } from "./translations";
 
 import { Container, MainBody, Row } from './components/style';
 
@@ -30,7 +29,6 @@ export class UnLocalizedMercurioApp extends React.Component<IMercurioAppProps> {
                 { name: "Spanish", code: "sp" }
             ],
             options: { renderToStaticMarkup },
-            translation: GlobalTranslations,
         });
     }
 
