@@ -11,7 +11,7 @@ interface IVisualizationTabProps extends React.Props<any> {
     setCurrentVisualization: typeof setCurrentVisualization;
 }
 
-export class VisualizationTab extends React.Component<IVisualizationTabProps> {
+export class UnConnectedVisualizationTab extends React.Component<IVisualizationTabProps> {
 
     public constructor(props: IVisualizationTabProps) {
         super(props);
@@ -34,4 +34,6 @@ export class VisualizationTab extends React.Component<IVisualizationTabProps> {
     }
 }
 
-export default connect(null, { setCurrentVisualization })(VisualizationTab);
+export const VisualizationTab = connect(null, { setCurrentVisualization })(UnConnectedVisualizationTab);
+
+export default VisualizationTab;

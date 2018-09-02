@@ -1,41 +1,54 @@
 import * as React from 'react';
+import { LocalizeContextProps, Translate, withLocalize } from 'react-localize-redux';
 import { connect } from 'react-redux';
 
-import VisualizationTab from './VisualizationTab';
 
 import { IVisualization } from '../../models/Visualization';
 import { IStoreState } from '../../reducers/rootReducer';
 import { getCurrentVisualization } from '../../selectors/currentVisualizationSelectors';
 import { getMyVisualizations } from '../../selectors/visualizationSelectors';
+import { MyVisualizationsTranslations } from '../../translations';
+import { VisualizationTab } from './';
 
 import { SideBarGroup, SideBarGroupItem, SideBarHeading } from '../style';
 
 
-interface IMyVisualizationsProps extends React.Props<any> {
+interface IUnLocalizeMyVisualizationsProps extends React.Props<any> {
     currentVisualization?: IVisualization;
     visualizations: IVisualization[];
 }
 
-export function MyVisualizations(props: IMyVisualizationsProps) {
-    return (
-        <div>
-            <SideBarHeading>
-                <span>My Visualizations</span>
-                <a className="d-flex align-items-center text-muted" href="#" />
-            </SideBarHeading>
-            <SideBarGroup>
-                {
-                    props.visualizations.map(visualization => (
-                        <SideBarGroupItem key={visualization.id} >
-                            <VisualizationTab active={props.currentVisualization === visualization}
-                                visualization={visualization}
-                            />
-                        </SideBarGroupItem>
-                    ))
-                }
-            </SideBarGroup>
-        </div>
-    );
+type IMyVisualizationsProps = LocalizeContextProps & IUnLocalizeMyVisualizationsProps;
+
+export class UnConnectedMyVisualizations extends React.Component<IMyVisualizationsProps> {
+
+    constructor(props: IMyVisualizationsProps) {
+        super(props);
+
+        this.props.addTranslation(MyVisualizationsTranslations);
+    }
+
+    public render() {
+        return (
+            <div>
+                <SideBarHeading>
+                    <span><Translate id="SideNav.MyVisualizations.header" /></span>
+                    <a className="d-flex align-items-center text-muted" href="#" />
+                </SideBarHeading>
+                <SideBarGroup>
+                    {
+                        this.props.visualizations.map(visualization => (
+                            <SideBarGroupItem key={visualization.id} >
+                                <VisualizationTab active={this.props.currentVisualization === visualization}
+                                    visualization={visualization}
+                                />
+                            </SideBarGroupItem>
+                        ))
+                    }
+                </SideBarGroup>
+            </div>
+        );
+    }
 }
 
 function mapStateToProps(state: IStoreState) {
@@ -45,4 +58,8 @@ function mapStateToProps(state: IStoreState) {
     }
 }
 
-export default connect(mapStateToProps)(MyVisualizations);
+export const UnLocalizeMyVisualizations = connect(mapStateToProps)(UnConnectedMyVisualizations);
+
+export const MyVisualizations = withLocalize(UnLocalizeMyVisualizations);
+
+export default MyVisualizations;
