@@ -1,13 +1,16 @@
 import * as React from 'react';
+import { LocalizeProvider } from 'react-localize-redux';
 import { Provider } from 'react-redux';
 
 import configureStore from './configureStore';
 
 
-export default function MercurioAppWrapper(props: React.Props<any>){
+export default function MercurioAppWrapper(props: React.Props<any>) {
     return (
-        <Provider store={configureStore()}>
-            {props.children}
-        </Provider>
+        <LocalizeProvider>
+            <Provider store={configureStore()}>
+                {props.children}
+            </Provider>
+        </LocalizeProvider>
     );
 }
