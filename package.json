@@ -20,7 +20,7 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "lint": "eslint --fix ./src",
+    "lint": "tslint --fix ./src",
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
@@ -38,6 +38,7 @@
     "husky": "^1.0.0-rc.13",
     "jshint": "^2.9.6",
     "lint-staged": "^7.2.2",
+    "tslint": "^5.11.0",
     "typescript": "^3.0.1"
   },
   "husky": {
@@ -47,7 +48,11 @@
     }
   },
   "lint-staged": {
-    "*.(j|t)s": [
+    "*.ts": [
+      "tslint --fix",
+      "git add"
+    ],
+    "*.js": [
       "eslint --fix",
       "git add"
     ]
