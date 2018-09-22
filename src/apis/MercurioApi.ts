@@ -34,7 +34,7 @@ export class MercurioApi implements IMercurioApi {
     }
 
     private get visualizationEndpoint() {
-        return '/visualization'
+        return '/visualizations'
     }
 
     private get searchEndpoint() {
