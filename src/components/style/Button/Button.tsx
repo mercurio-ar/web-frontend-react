@@ -5,7 +5,7 @@ interface IButtonProps extends React.Props<any> {
     extraClasses?: string
     type?: 'submit' | 'reset' | 'button';
     variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'outline-primary' | 'outline-secondary' | 'outline-success' | 'outline-danger' | 'outline-warning' | 'outline-info' | 'outline-light' | 'outline-dark';
-    onClick?: () => void;
+    onClick?: (event?: React.SyntheticEvent<any>) => void;
 }
 
 export function Button(props: IButtonProps) {

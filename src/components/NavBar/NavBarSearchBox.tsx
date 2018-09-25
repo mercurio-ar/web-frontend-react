@@ -1,9 +1,7 @@
 import * as React from 'react';
 
-import { ISearchResult } from '../../apis';
-import { SerieNameSearch, SerieSearchForm, SerieSearchResults } from '../SerieSearch';
-import { Modal, ModalBody, ModalHeader, TextInput } from '../style';
-import { NavBarSearchResult } from './';
+import { SerieSearchModal } from '../SerieSearch/SerieSearchModal';
+import { TextInput } from '../style';
 
 
 interface INavBarSearchBoxProps extends React.Props<any> {
@@ -24,7 +22,6 @@ export default class NavBarSearchBox extends React.Component<INavBarSearchBoxPro
 
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.renderResultWrapper = this.renderResultWrapper.bind(this);
     }
 
     public openModal() {
@@ -33,14 +30,6 @@ export default class NavBarSearchBox extends React.Component<INavBarSearchBoxPro
 
     public closeModal() {
         this.setState({ isModalOpen: false });
-    }
-
-    public renderResultWrapper(renderedResult: JSX.Element, key: string | number, searchResult: ISearchResult) {
-        return (
-            <NavBarSearchResult key={key} searchResult={searchResult} onClick={this.closeModal}>
-                {renderedResult}
-            </NavBarSearchResult>
-        );
     }
 
     public render() {
@@ -57,16 +46,7 @@ export default class NavBarSearchBox extends React.Component<INavBarSearchBoxPro
                         color: '#fff',
                     }}
                 />
-                <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
-                    <ModalHeader>
-                        <SerieSearchForm>
-                            <SerieNameSearch />
-                        </SerieSearchForm>
-                    </ModalHeader>
-                    <ModalBody>
-                        <SerieSearchResults renderResultWrapper={this.renderResultWrapper} />
-                    </ModalBody>
-                </Modal>
+                <SerieSearchModal open={this.state.isModalOpen} onClose={this.closeModal} />
             </div>
         );
     }

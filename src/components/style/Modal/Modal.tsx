@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { Modal as UiModal } from '@material-ui/core';
 
-interface IModalProps extends React.Props<any> {
+
+export interface IModalProps extends React.Props<any> {
     open: boolean;
     onClose: () => void;
 }

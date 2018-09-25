@@ -5,13 +5,13 @@ import { newVisualizationFromSearchResult } from '../../actions';
 import { ISearchResult } from '../../apis';
 
 
-interface INavBarSearchResultProps extends React.Props<any> {
+interface ISerieSearchModalSearchResultProps extends React.Props<any> {
     searchResult: ISearchResult;
     newVisualization: () => void;
     onClick: () => void;
 }
 
-function UnConnectedNavBarSearchResult(props: INavBarSearchResultProps) {
+function UnConnectedSerieSearchModalSearchResult(props: ISerieSearchModalSearchResultProps) {
     const handleClick = () => {
         props.newVisualization();
         props.onClick();
@@ -26,13 +26,13 @@ function UnConnectedNavBarSearchResult(props: INavBarSearchResultProps) {
     );
 }
 
-function mapDispatchToProps(dispatch: any, ownProps: INavBarSearchResultProps) {
+function mapDispatchToProps(dispatch: any, ownProps: ISerieSearchModalSearchResultProps) {
     return {
         ...ownProps,
         newVisualization: () => dispatch(newVisualizationFromSearchResult(ownProps.searchResult)),
     }
 }
 
-export const NavBarSearchResult: any = connect(null, mapDispatchToProps)(UnConnectedNavBarSearchResult);
+export const SerieSearchModalSearchResult: any = connect(null, mapDispatchToProps)(UnConnectedSerieSearchModalSearchResult);
 
-export default NavBarSearchResult;
+export default SerieSearchModalSearchResult;
