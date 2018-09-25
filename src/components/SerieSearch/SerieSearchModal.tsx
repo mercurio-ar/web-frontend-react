@@ -29,8 +29,12 @@ export class SerieSearchModal extends React.Component<ISerieSearchModalProps> {
     }
 
     public render() {
+        const modalProps = {
+            onClose: this.props.onClose,
+            open: this.props.open,
+        }
         return (
-            <Modal {...this.props}>
+            <Modal {...modalProps}>
                 <ModalHeader>
                     <SerieSearchForm>
                         <SerieNameSearch />
