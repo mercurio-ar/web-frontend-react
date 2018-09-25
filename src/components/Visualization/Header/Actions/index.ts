@@ -1,10 +1,10 @@
-import VisualizationAdd from "./VisualizationAdd";
+import VisualizationAddSerieAction from "./VisualizationAddSerieAction";
 import VisualizationExport from "./VisualizationExport";
 import VisualizationShare from "./VisualizationShare";
 import VisualizationTakeSnapshot from "./VisualizationTakeSnapshot";
 
 export {
-    VisualizationAdd,
+    VisualizationAddSerieAction,
     VisualizationExport,
     VisualizationShare,
     VisualizationTakeSnapshot,

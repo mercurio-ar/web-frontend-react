@@ -1,10 +1,20 @@
 import * as React from 'react';
+import { LocalizeContextProps, withLocalize } from 'react-localize-redux';
 
+import { VisualizationTranslations } from '../../translations';
 import VisualizationHeader from './Header';
 import VisualizationChart from './VisualizationChart';
 
 
-export default class Visualization extends React.Component {
+type IVisualizationProps = LocalizeContextProps & React.Props<any>;
+
+export class UnLocalizeVisualization extends React.Component<IVisualizationProps> {
+
+    constructor(props: IVisualizationProps) {
+        super(props);
+
+        this.props.addTranslation(VisualizationTranslations);
+    }
 
     public render(){
         return (
@@ -15,3 +25,7 @@ export default class Visualization extends React.Component {
         );
     }
 }
+
+export const Visualization = withLocalize(UnLocalizeVisualization);
+
+export default Visualization;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {
-    VisualizationAdd,
+    VisualizationAddSerieAction,
     VisualizationExport,
     VisualizationShare,
     VisualizationTakeSnapshot,
@@ -19,7 +19,7 @@ export default class VisualizationHeader extends React.Component {
                 </h1>
                 <div className="btn-toolbar mb-2 mb-md-0">
                     <div className="btn-group mr-2">
-                        <VisualizationAdd />
+                        <VisualizationAddSerieAction />
                         <VisualizationTakeSnapshot />
                         <VisualizationShare />
                         <VisualizationExport />
