@@ -1,18 +1,22 @@
 import * as React from 'react';
 import { Translate } from 'react-localize-redux';
+import { connect } from 'react-redux';
 
+import { addSerieFromSearchResultToCurrentVisualization } from '../../../../actions';
 import { ISearchResult } from '../../../../apis';
 import { SerieSearchModal } from '../../../SerieSearch';
 import { Button } from '../../../style';
 
 
-type IVisualizationAddSerieActionProps = React.Props<any>
+interface IVisualizationAddSerieActionProps extends React.Props<any> {
+    addSerieFromSearchResultToCurrentVisualization: (searchResult: ISearchResult) => void;
+}
 
 interface IVisualizationAddSerieActionState {
     isModalOpen: boolean;
 }
 
-export class VisualizationAddSerieAction extends React.Component<IVisualizationAddSerieActionProps, IVisualizationAddSerieActionState> {
+export class UnConnectedVisualizationAddSerieAction extends React.Component<IVisualizationAddSerieActionProps, IVisualizationAddSerieActionState> {
 
     constructor(props: IVisualizationAddSerieActionProps) {
         super(props);
@@ -27,9 +31,8 @@ export class VisualizationAddSerieAction extends React.Component<IVisualizationA
         this.handleSearchResultClick = this.handleSearchResultClick.bind(this);
     }
 
-    public handleSearchResultClick(event: React.SyntheticEvent, searchResult: ISearchResult){
-        // tslint:disable-next-line:no-console
-        console.log(searchResult);
+    public handleSearchResultClick(event: React.SyntheticEvent, searchResult: ISearchResult) {
+        this.props.addSerieFromSearchResultToCurrentVisualization(searchResult);
     }
 
     public handleClick(event: React.SyntheticEvent<any>) {
@@ -58,5 +61,7 @@ export class VisualizationAddSerieAction extends React.Component<IVisualizationA
         );
     }
 }
+
+export const VisualizationAddSerieAction = connect(null, { addSerieFromSearchResultToCurrentVisualization })(UnConnectedVisualizationAddSerieAction);
 
 export default VisualizationAddSerieAction;
