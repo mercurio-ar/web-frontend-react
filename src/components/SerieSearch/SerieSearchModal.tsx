@@ -8,9 +8,13 @@ import { SerieSearchModalSearchResult } from './SerieSearchModalSearchResult';
 import { SerieSearchResults } from './SerieSearchResults';
 
 
-export class SerieSearchModal extends React.Component<IModalProps> {
+export interface ISerieSearchModalProps extends IModalProps{
+    onSearchResultClick: (event: React.SyntheticEvent, searchResult: ISearchResult) => void;
+}
 
-    constructor(props: IModalProps) {
+export class SerieSearchModal extends React.Component<ISerieSearchModalProps> {
+
+    constructor(props: ISerieSearchModalProps) {
         super(props);
 
         this.renderResultWrapper = this.renderResultWrapper.bind(this);
@@ -18,7 +22,7 @@ export class SerieSearchModal extends React.Component<IModalProps> {
 
     public renderResultWrapper(renderedResult: JSX.Element, key: string | number, searchResult: ISearchResult) {
         return (
-            <SerieSearchModalSearchResult key={key} searchResult={searchResult} onClick={this.props.onClose}>
+            <SerieSearchModalSearchResult key={key} searchResult={searchResult} onClick={this.props.onSearchResultClick}>
                 {renderedResult}
             </SerieSearchModalSearchResult>
         );

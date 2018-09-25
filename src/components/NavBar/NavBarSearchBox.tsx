@@ -1,18 +1,21 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 
-import { SerieSearchModal } from '../SerieSearch/SerieSearchModal';
+import { newVisualizationFromSearchResult } from '../../actions';
+import { ISearchResult } from '../../apis';
+import { SerieSearchModal } from '../SerieSearch';
 import { TextInput } from '../style';
 
 
 interface INavBarSearchBoxProps extends React.Props<any> {
-
+    newVisualizationFromSearchResult: (searchResult: ISearchResult) => void;
 }
 
 interface INavBarSearchBoxState {
     isModalOpen: boolean
 }
 
-export default class NavBarSearchBox extends React.Component<INavBarSearchBoxProps, INavBarSearchBoxState> {
+export class UnConnectedNavBarSearchBox extends React.Component<INavBarSearchBoxProps, INavBarSearchBoxState> {
 
     constructor(props: INavBarSearchBoxProps) {
         super(props);
@@ -22,6 +25,11 @@ export default class NavBarSearchBox extends React.Component<INavBarSearchBoxPro
 
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.handleSearchResultClick = this.handleSearchResultClick.bind(this);
+    }
+
+    public handleSearchResultClick(event: React.SyntheticEvent, searchResult: ISearchResult){
+        this.props.newVisualizationFromSearchResult(searchResult);
     }
 
     public openModal() {
@@ -46,8 +54,16 @@ export default class NavBarSearchBox extends React.Component<INavBarSearchBoxPro
                         color: '#fff',
                     }}
                 />
-                <SerieSearchModal open={this.state.isModalOpen} onClose={this.closeModal} />
+                <SerieSearchModal 
+                open={this.state.isModalOpen} 
+                onClose={this.closeModal} 
+                onSearchResultClick={this.handleSearchResultClick}
+                />
             </div>
         );
     }
 }
+
+export const NavBarSearchBox: any = connect(null, {newVisualizationFromSearchResult})(UnConnectedNavBarSearchBox);
+
+export default NavBarSearchBox;

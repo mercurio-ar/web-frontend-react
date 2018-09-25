@@ -1,21 +1,19 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 
-import { newVisualizationFromSearchResult } from '../../actions';
 import { ISearchResult } from '../../apis';
 
 
 interface ISerieSearchModalSearchResultProps extends React.Props<any> {
     searchResult: ISearchResult;
-    newVisualization: () => void;
-    onClick: () => void;
+    onClick: (event: React.SyntheticEvent, searchResult: ISearchResult) => void;
 }
 
-function UnConnectedSerieSearchModalSearchResult(props: ISerieSearchModalSearchResultProps) {
-    const handleClick = () => {
-        props.newVisualization();
-        props.onClick();
-    }
+export function SerieSearchModalSearchResult(props: ISerieSearchModalSearchResultProps) {
+    
+    const handleClick = (event: React.SyntheticEvent) => {
+        props.onClick(event, props.searchResult);
+    };
+    
     return (
         <div
             onClick={handleClick}
@@ -26,13 +24,13 @@ function UnConnectedSerieSearchModalSearchResult(props: ISerieSearchModalSearchR
     );
 }
 
-function mapDispatchToProps(dispatch: any, ownProps: ISerieSearchModalSearchResultProps) {
-    return {
-        ...ownProps,
-        newVisualization: () => dispatch(newVisualizationFromSearchResult(ownProps.searchResult)),
-    }
-}
+// function mapDispatchToProps(dispatch: any, ownProps: ISerieSearchModalSearchResultProps) {
+//     return {
+//         ...ownProps,
+//         newVisualization: () => dispatch(newVisualizationFromSearchResult(ownProps.searchResult)),
+//     }
+// }
 
-export const SerieSearchModalSearchResult: any = connect(null, mapDispatchToProps)(UnConnectedSerieSearchModalSearchResult);
+// export const SerieSearchModalSearchResult: any = connect(null, mapDispatchToProps)(UnConnectedSerieSearchModalSearchResult);
 
 export default SerieSearchModalSearchResult;
