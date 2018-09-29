@@ -12,4 +12,5 @@ export interface IMercurioApi {
     deleteVisualization: (visualization: IVisualization) => Promise<void>;
     fetchVisualizations: () => Promise<IVisualization[]>
     search: (searchQuery: ISearchQuery) => Promise<ISearchResult[]>
+    addSearchResultToVisualization: (visualization: IVisualization, searchResult: ISearchResult) => Promise<IVisualization>
 }
