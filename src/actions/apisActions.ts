@@ -1,7 +1,7 @@
 import { Action } from 'redux';
 
-import { SET_APIS } from '../constants/apisContstants';
-import { IApisState } from '../reducers/apisReducer';
+import { SET_APIS } from '../constants';
+import { IApisState } from '../reducers';
 
 
 export interface IApisAction extends Action{
