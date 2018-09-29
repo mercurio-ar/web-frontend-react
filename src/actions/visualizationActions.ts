@@ -5,7 +5,8 @@ import {
     REMOVE_VISUALIZATIONS,
     SET_FETCHING_VISUALIZATION,
     SET_USER_VISUALIZATIONS,
-    SET_VISUALIZATIONS_ERROR
+    SET_VISUALIZATIONS_ERROR,
+    UPDATE_VISUALIZATIONS,
 } from "../constants";
 import { IVisualization } from "../models";
 import { IStoreState } from "../reducers";
@@ -90,4 +91,15 @@ export function deleteVisualization(visualization: IVisualization) {
                 dispatch(setVisualizationsError(err));
             })
     };
+}
+
+export function updateVisualizations(visualizations: IVisualization[]): IVisualizationsManipulationAction {
+    return {
+        type: UPDATE_VISUALIZATIONS,
+        visualizations
+    };
+}
+
+export function updateVisualization(visualization: IVisualization): IVisualizationsManipulationAction {
+    return updateVisualizations([visualization]);
 }
