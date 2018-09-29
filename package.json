@@ -1,5 +1,5 @@
 {
-  "name": "web-frontend-react",
+  "name": "@mercurio-ar/web-frontend-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
