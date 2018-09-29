@@ -48,11 +48,11 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
+    "*.{ts,tsx}": [
       "tslint --fix",
       "git add"
     ],
-    "*.js": [
+    "*.{js,jsx}": [
       "eslint --fix",
       "git add"
     ]
