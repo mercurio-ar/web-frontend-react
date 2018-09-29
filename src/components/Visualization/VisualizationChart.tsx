@@ -10,17 +10,18 @@ import {
     YAxis
 } from 'recharts';
 
-import { IStoreState } from '../../reducers/rootReducer';
+import { IStoreState } from '../../reducers';
 import {
     getCurrentVisualizationSeries,
     ILineColorGetter,
     ILineTypeGetter,
+    ISerieDisplayNameGetter,
     makeGetSerieColor,
+    makeGetSerieDisplayName, 
     makeGetSerieLineType
-} from '../../selectors/currentVisualizationSelectors';
-import { ISerieDisplayNameGetter, makeGetSerieDisplayName } from '../../selectors/serieSelectors';
+} from '../../selectors';
 
-import { ISerie } from '../../models/Serie';
+import { ISerie } from '../../models';
 
 
 export interface IVisualizationChartProps extends React.Props<any> {
@@ -52,7 +53,6 @@ export class VisualizationChart extends React.Component<IVisualizationChartProps
                     >
             <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
-                        allowDataOverflow={true}
                         dataKey="name"
                         type="category"
                     />
