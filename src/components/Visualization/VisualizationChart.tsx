@@ -17,7 +17,7 @@ import {
     ILineTypeGetter,
     ISerieDisplayNameGetter,
     makeGetSerieColor,
-    makeGetSerieDisplayName, 
+    makeGetSerieDisplayName,
     makeGetSerieLineType
 } from '../../selectors';
 
@@ -42,18 +42,24 @@ export class VisualizationChart extends React.Component<IVisualizationChartProps
                 data[point.x] = Object.assign({}, (data[point.x] || {}), currentPoint);
             });
         });
-        return Object.keys(data).map(key => Object.assign({ name: key }, data[key]));
+        return Object.keys(data).map(key =>
+            Object.assign({ date: key }, data[key])
+        ).sort((a, b) =>
+            Date.parse(a.date) - Date.parse(b.date)
+        );
     }
 
     public render() {
         const data = this.seriesData();
+        // tslint:disable-next-line:no-console
+        console.log(data)
         return (
             <ResponsiveContainer minHeight={200} minWidth={100}>
                 <LineChart data={data}>
                     >
             <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
-                        dataKey="name"
+                        dataKey="date"
                         type="category"
                     />
                     {
