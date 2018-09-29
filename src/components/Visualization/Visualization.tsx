@@ -1,47 +1,31 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { LocalizeContextProps, withLocalize } from 'react-localize-redux';
 
-import { IStoreState } from '../../reducers/rootReducer';
-import { getCurrentVisualizationName } from '../../selectors/currentVisualizationSelectors';
-
-import VisualizationAdd from './VisualizationAdd';
+import { VisualizationTranslations } from '../../translations';
+import VisualizationHeader from './Header';
 import VisualizationChart from './VisualizationChart';
-import VisualizationExport from './VisualizationExport';
-import VisualizationShare from './VisualizationShare';
-import VisualizationTakeSnapshot from './VisualizationTakeSnapshot';
 
 
-interface IVisualizationProps extends React.Props<any> {
-    name?: string;
-}
+type IVisualizationProps = LocalizeContextProps & React.Props<any>;
 
-class Visualization extends React.Component<IVisualizationProps> {
+export class UnLocalizeVisualization extends React.Component<IVisualizationProps> {
+
+    constructor(props: IVisualizationProps) {
+        super(props);
+
+        this.props.addTranslation(VisualizationTranslations);
+    }
 
     public render(){
         return (
             <div>
-                <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 className="h2">{this.props.name}</h1>
-                    <div className="btn-toolbar mb-2 mb-md-0">
-                        <div className="btn-group mr-2">
-                            <VisualizationAdd />
-                            <VisualizationTakeSnapshot />
-                            <VisualizationShare />
-                            <VisualizationExport />
-                        </div>
-                    </div>
-                </div>
-
+                <VisualizationHeader />
                 <VisualizationChart />
             </div>
         );
     }
 }
 
-function mapStateToProps(state: IStoreState){
-    return {
-        name: getCurrentVisualizationName(state),
-    }
-}
+export const Visualization = withLocalize(UnLocalizeVisualization);
 
-export default connect(mapStateToProps)(Visualization);
+export default Visualization;

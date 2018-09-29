@@ -41,4 +41,17 @@ export default class MockMercurioApi implements IMercurioApi {
             { id: 4, displayName: "searchResult04" },
         ]);
     }
+
+    public addSearchResultToVisualization(visualization: IVisualization, searchResult: ISearchResult) {
+        return Promise.resolve({
+            ...visualization,
+            series: [
+                ...visualization.series,
+                {
+                    displayName: searchResult.displayName,
+                    points: [],
+                }
+            ]
+        });
+    }
 }
