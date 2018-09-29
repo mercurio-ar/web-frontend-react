@@ -51,8 +51,6 @@ export class VisualizationChart extends React.Component<IVisualizationChartProps
 
     public render() {
         const data = this.seriesData();
-        // tslint:disable-next-line:no-console
-        console.log(data)
         return (
             <ResponsiveContainer minHeight={200} minWidth={100}>
                 <LineChart data={data}>
