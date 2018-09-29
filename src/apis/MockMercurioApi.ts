@@ -5,19 +5,31 @@ import { ISearchResult } from "./IMercurioApi";
 
 
 const series: ISerie[] = [
-    { displayName: "serie1", points: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 3, y: 1 }] },
-    { displayName: "serie2", points: [{ x: 0, y: 1 }, { x: 3, y: 4 }] },
-    { displayName: "serie3", points: [{ x: 0, y: 1 }, { x: 1, y: 4 }, { x: 3, y: 1 }] },
-    { displayName: "serie4", points: [{ x: 0, y: 3 }, { x: 1, y: 1 }, { x: 3, y: 2 }] },
+    { id: 1, displayName: "serie1", points: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 3, y: 1 }] },
+    { id: 2, displayName: "serie2", points: [{ x: 0, y: 1 }, { x: 3, y: 4 }] },
+    { id: 3, displayName: "serie3", points: [{ x: 0, y: 1 }, { x: 1, y: 4 }, { x: 3, y: 1 }] },
+    { id: 5, displayName: "serie4", points: [{ x: 0, y: 3 }, { x: 1, y: 1 }, { x: 3, y: 2 }] },
 ];
 
 export default class MockMercurioApi implements IMercurioApi {
 
-    public createVisualizationFromSearchResult({ id, displayName }: ISearchResult) {
+    private visId: number;
+
+    constructor(){
+        this.visId = 0;
+    }
+
+    public createVisualizationFromSearchResult(searchResult: ISearchResult) {
+        this.visId += 1;
         return Promise.resolve({
-            id,
-            name: displayName,
-            series
+            id: this.visId,
+            name: `visualization${this.visId}`,
+            series: [
+                {
+                    ...searchResult,
+                    points: series[this.visId % series.length].points
+                }
+            ]
         });
     }
 
@@ -48,7 +60,7 @@ export default class MockMercurioApi implements IMercurioApi {
             series: [
                 ...visualization.series,
                 {
-                    displayName: searchResult.displayName,
+                    ...searchResult,
                     points: [],
                 }
             ]

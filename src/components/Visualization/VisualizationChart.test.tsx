@@ -17,8 +17,8 @@ describe('series => chartData adapter', () => {
     it('translates series data to chart data', () => {
         // Setup
         const series: ISerie[] = [
-            { displayName: "serie1", points: [{ x: "2018-01-01", y: 1 }, { x: "2018-01-02", y: 2 }] },
-            { displayName: "serie2", points: [{ x: "2018-01-01", y: 2 }, { x: "2018-01-02", y: 1 }] },
+            { id: 1, displayName: "serie1", points: [{ x: "2018-01-01", y: 1 }, { x: "2018-01-02", y: 2 }] },
+            { id: 2, displayName: "serie2", points: [{ x: "2018-01-01", y: 2 }, { x: "2018-01-02", y: 1 }] },
         ];
         const props = { ...visCharProps, series };
         const visChart = new VisualizationChart(props);

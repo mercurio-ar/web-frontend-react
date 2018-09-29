@@ -59,14 +59,16 @@ export class VisualizationChart extends React.Component<IVisualizationChartProps
                     {
                         this.props.series.map((serie, index) => (
                             <YAxis
+                                key={serie.id}
+                                yAxisId={index.toString()}
                                 allowDataOverflow={true}
                                 type="number"
-                                yAxisId={index.toString()}
                             />))
                     }
                     {
                         this.props.series.map((serie, index) => (
                             <Line
+                                key={serie.id}
                                 yAxisId={index.toString()}
                                 type={this.props.getSerieLineType(serie)}
                                 dataKey={this.props.getSerieDisplayName(serie)}
