@@ -5,7 +5,7 @@ import {
 } from "../constants/currentVisualizationConstants";
 
 import { ISearchResult } from "../apis";
-import { IVisualization } from "../models/Visualization";
+import { IVisualization } from "../models";
 import { IStoreState } from "../reducers";
 import { 
     getCurrentVisualization, 

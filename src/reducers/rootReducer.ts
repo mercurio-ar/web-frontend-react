@@ -1,6 +1,6 @@
 import { AnyAction, combineReducers, Reducer } from 'redux';
 
-import { IVisualization } from "../models/Visualization";
+import { IVisualization } from "../models";
 
 import apis, { IApisState } from "./apisReducer";
 import currentVisualization from "./currentVisualizationReducer";

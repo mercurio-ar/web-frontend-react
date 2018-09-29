@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.1.1",
+    "@mercurio-ar/model": "file:../model",
     "axios": "^0.18.0",
     "querystring": "^0.2.0",
     "react": "^16.5.2",

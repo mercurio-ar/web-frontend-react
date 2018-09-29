@@ -1,4 +1,4 @@
-import { ISerie } from '../../models/Serie';
+import { ISerie } from '../../models';
 
 import { IVisualizationChartProps, VisualizationChart } from './VisualizationChart';
 
