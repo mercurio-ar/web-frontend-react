@@ -9,6 +9,7 @@ import { ISearchQuery, ISearchResult } from './';
 
 export interface IMercurioApiClient {
     createVisualizationFromSearchResult: (searchResult: ISearchResult) => Promise<IVisualization>;
+    updateVisualization: (visualization: IVisualization) => Promise<IVisualization>;
     deleteVisualization: (visualization: IVisualization) => Promise<void>;
     fetchVisualizations: () => Promise<IVisualization[]>
     search: (searchQuery: ISearchQuery) => Promise<ISearchResult[]>
@@ -23,6 +24,12 @@ export class MercurioApiClient implements IMercurioApiClient {
         return this.http.post(this.visualizationEndpoint(), {
             searchResult
         }).then(axiosResponse => axiosResponse.data);
+    }
+
+    public updateVisualization(visualization: IVisualization): Promise<IVisualization> {
+        return this.http.patch(this.visualizationEndpoint(visualization),
+            visualization)
+            .then(axiosResponse => axiosResponse.data);
     }
 
     public deleteVisualization(visualization: IVisualization): Promise<void> {
