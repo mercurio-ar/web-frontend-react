@@ -3,7 +3,7 @@ import { LocalizeContextProps, Translate, withLocalize } from 'react-localize-re
 import { connect } from 'react-redux';
 
 
-import { IVisualization } from '../../models/Visualization';
+import { IVisualization } from '../../models';
 import { IStoreState } from '../../reducers/rootReducer';
 import { getCurrentVisualization } from '../../selectors/currentVisualizationSelectors';
 import { getMyVisualizations } from '../../selectors/visualizationSelectors';

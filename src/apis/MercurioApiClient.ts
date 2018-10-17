@@ -1,11 +1,22 @@
+import { IVisualization } from '@mercurio-ar/model';
+
 import { AxiosInstance } from 'axios';
+
 import * as querystring from 'querystring';
 
-import { IVisualization } from '../models';
-import { IMercurioApi, ISearchQuery, ISearchResult } from './';
+import { ISearchQuery, ISearchResult } from './';
 
 
-export class MercurioApi implements IMercurioApi {
+export interface IMercurioApiClient {
+    createVisualizationFromSearchResult: (searchResult: ISearchResult) => Promise<IVisualization>;
+    updateVisualization: (visualization: IVisualization) => Promise<IVisualization>;
+    deleteVisualization: (visualization: IVisualization) => Promise<void>;
+    fetchVisualizations: () => Promise<IVisualization[]>
+    search: (searchQuery: ISearchQuery) => Promise<ISearchResult[]>
+    addSearchResultToVisualization: (visualization: IVisualization, searchResult: ISearchResult) => Promise<IVisualization>
+}
+
+export class MercurioApiClient implements IMercurioApiClient {
 
     constructor(private http: AxiosInstance) { }
 
@@ -15,12 +26,15 @@ export class MercurioApi implements IMercurioApi {
         }).then(axiosResponse => axiosResponse.data);
     }
 
+    public updateVisualization(visualization: IVisualization): Promise<IVisualization> {
+        return this.http.patch(this.visualizationEndpoint(visualization),
+            visualization)
+            .then(axiosResponse => axiosResponse.data);
+    }
+
     public deleteVisualization(visualization: IVisualization): Promise<void> {
-        return this.http.delete(this.visualizationEndpoint(), {
-            data: {
-                visualization
-            }
-        }).then(axiosResponse => axiosResponse.data);
+        return this.http.delete(this.visualizationEndpoint(visualization))
+            .then(axiosResponse => axiosResponse.data);
     }
 
     public fetchVisualizations(): Promise<IVisualization[]> {
@@ -42,7 +56,7 @@ export class MercurioApi implements IMercurioApi {
 
     private visualizationEndpoint(visualization?: IVisualization) {
         let path = '/visualizations'
-        if(visualization){
+        if (visualization) {
             path = `${path}/${visualization.id}`;
         }
         return path

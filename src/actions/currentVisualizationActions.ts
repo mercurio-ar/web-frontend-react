@@ -5,15 +5,15 @@ import {
 } from "../constants/currentVisualizationConstants";
 
 import { ISearchResult } from "../apis";
-import { IVisualization } from "../models/Visualization";
+import { IVisualization } from "../models";
 import { IStoreState } from "../reducers";
-import { 
-    getCurrentVisualization, 
-    getMercurioApi 
+import {
+    getCurrentVisualization,
+    getMercurioApi
 } from "../selectors";
 import {
-    setFetchingVisualizations, 
-    setVisualizationsError, 
+    setFetchingVisualizations,
+    setVisualizationsError,
     updateVisualization,
 } from "./visualizationActions";
 
@@ -35,10 +35,37 @@ export function addSerieFromSearchResultToCurrentVisualization(searchResult: ISe
         const currentVisualization = getCurrentVisualization(state);
         const mercurioApi = getMercurioApi(state);
         setFetchingVisualizations(true);
-        if(!currentVisualization){
+        if (!currentVisualization) {
             return Promise.reject('Can not add serie: No visualization currently open');
         }
         return mercurioApi.addSearchResultToVisualization(currentVisualization, searchResult)
+            .then((visualization: IVisualization) => {
+                dispatch(updateVisualization(visualization));
+                dispatch(setFetchingVisualizations(false));
+            })
+            .catch((err: string) => {
+                dispatch(setVisualizationsError(err));
+                dispatch(setFetchingVisualizations(false));
+            });
+    };
+}
+
+export function setCurrentVisualizationName(name: string) {
+    return (dispatch: Dispatch, getState: () => IStoreState) => {
+        const state = getState();
+        const currentVisualization = getCurrentVisualization(state);
+        const mercurioApi = getMercurioApi(state);
+        setFetchingVisualizations(true);
+        if (!currentVisualization) {
+            return Promise.reject('Can not add serie: No visualization currently open');
+        }
+
+        const updatedVisualization = {
+            ...currentVisualization,
+            name,
+        }
+
+        return mercurioApi.updateVisualization(updatedVisualization)
             .then((visualization: IVisualization) => {
                 dispatch(updateVisualization(visualization));
                 dispatch(setFetchingVisualizations(false));

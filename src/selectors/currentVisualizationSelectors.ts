@@ -3,9 +3,7 @@ import { createSelector } from 'reselect';
 
 import { IStoreState } from "../reducers/rootReducer";
 
-import { ISerie } from '../models/Serie';
-import { IVisualization } from "../models/Visualization";
-
+import { ISerie, IVisualization } from '../models';
 import { getMyVisualizations } from "./visualizationSelectors";
 
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { setCurrentVisualization } from '../../actions/currentVisualizationActions';
-import { IVisualization } from '../../models/Visualization';
+import { IVisualization } from '../../models';
 import { DeleteVisualizationAction } from './';
 
 interface IVisualizationTabProps extends React.Props<any> {
