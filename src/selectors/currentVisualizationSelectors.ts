@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 
 import { IStoreState } from "../reducers/rootReducer";
 
+import { ISearchResult } from 'src/apis';
 import { ISerie, IVisualization } from '../models';
 import { getMyVisualizations } from "./visualizationSelectors";
 
@@ -42,4 +43,11 @@ export type ILineTypeGetter = (serie: ISerie) => ILineType;
 
 export function makeGetSerieLineType(state: IStoreState): ILineTypeGetter {
     return () => "natural";
+}
+
+export function makeCurrentVisualizationContainsSerie(state: IStoreState): ((serie: ISerie | ISearchResult) => boolean) {
+    return (serie) =>
+        getCurrentVisualizationSeries(state)
+            .map((visualizationSerie: ISerie) => visualizationSerie.id)
+            .indexOf(serie.id) !== -1;
 }
