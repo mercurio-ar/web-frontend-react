@@ -4,7 +4,7 @@ import { ISearchResult } from '../../apis';
 import { IModalProps, Modal, ModalBody, ModalHeader } from '../style';
 import { SerieNameSearch } from './SerieNameSearch';
 import { SerieSearchForm } from './SerieSearchForm';
-import { SerieSearchModalSearchResult } from './SerieSearchModalSearchResult';
+import SerieSearchModalSearchResult from './SerieSearchModalSearchResult';
 import { SerieSearchResults } from './SerieSearchResults';
 
 

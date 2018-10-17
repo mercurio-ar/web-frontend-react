@@ -29,7 +29,7 @@ export function UnConnectedSerieSearchResults(props: ISerieSearchResultsProps) {
 
 function renderResultWrapper(renderedResult: JSX.Element, key: string | number) {
     return (
-        <div key={key} className="list-group-item list-group-item-action" >
+        <div key={key} className="list-group-item list-group-item-action active" >
             {renderedResult}
         </div>
     );
