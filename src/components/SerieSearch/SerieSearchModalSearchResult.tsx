@@ -14,17 +14,20 @@ interface ISerieSearchModalSearchResultProps extends React.Props<any> {
 }
 
 export function UnConnectedSerieSearchModalSearchResult(props: ISerieSearchModalSearchResultProps) {
-    
+
+    const alreadyAdded = props.currentVisualizationContainsSerie(props.searchResult);
+
     const handleClick = (event: React.SyntheticEvent) => {
+        if (alreadyAdded) { return; }
         props.onClick(event, props.searchResult);
     };
-    
+
     return (
         <div
             onClick={handleClick}
             className={`list-group-item 
             list-group-item-action 
-            ${props.currentVisualizationContainsSerie(props.searchResult) ? 'active' : ''}`}
+            ${alreadyAdded ? 'active' : ''}`}
         >
             {props.children}
         </div>
